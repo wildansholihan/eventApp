@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     paddingTop: 16,
   },
 
-  // Header
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -24,7 +23,6 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   },
 
-  // Search
   searchWrapper: {
     position: 'relative',
     marginBottom: 20,
@@ -55,7 +53,6 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
 
-  // Grid & Product
   gridColumn: {
     flex: 1,
     justifyContent: 'space-between',

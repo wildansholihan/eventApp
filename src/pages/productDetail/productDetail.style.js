@@ -4,6 +4,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
 
   scrollContainer: {
@@ -18,8 +20,9 @@ const styles = StyleSheet.create({
   },
 
   backButton: {
-    marginBottom: 16,
+    marginBottom: 32,
     justifyContent: 'space-between',
+    flexDirection: 'row',
   },
 
   backText: {
@@ -74,6 +77,9 @@ const styles = StyleSheet.create({
     color: '#DC2626',
     textAlign: 'center',
     marginTop: 32,
+  },
+  contentContainer: {
+    flex: 1,
   },
 
   footer: {

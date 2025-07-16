@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import styles from '../home.style';
 import homeService from '../home.service';
 
-const HomeContent = () => {
+const ProductDetailContent = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const navigation = useNavigation();
@@ -18,14 +18,12 @@ const HomeContent = () => {
       .catch(err => console.error('Failed to fetch products:', err));
   }, []);
 
-  // Filter produk berdasarkan searchTerm
   const filteredProducts = products.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <View style={{ flex: 1 }}>
-      {/* Search Bar */}
       <View style={styles.searchWrapper}>
         <TextInput
           placeholder="Search products..."
@@ -60,4 +58,4 @@ const HomeContent = () => {
   );
 };
 
-export default HomeContent;
+export default ProductDetailContent;

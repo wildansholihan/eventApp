@@ -126,6 +126,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+    modalTextDel: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#371f1fff',
+  },
+
+  contentContainer: {
+    flex:1,
+    backgroundColor: '#F9FAFB',
+    padding: 16,
+  },
 
   totalText: {
     fontSize: 16,
@@ -162,13 +173,12 @@ const styles = StyleSheet.create({
     padding: 24,
     borderRadius: 12,
     alignItems: 'center',
-    width: '80%',
   },
 
   modalText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#10B981',
     textAlign: 'center',
     marginVertical: 12,
   },

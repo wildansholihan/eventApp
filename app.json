@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "myApp",
-    "slug": "myApp",
+    "name": "ShopApp",
+    "slug": "shop-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,14 +20,22 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.wildansho.shopapp"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "build": {
         "babel": {
-          "include": ["@ui-kitten/components"]
+          "include": [
+            "@ui-kitten/components"
+          ]
         }
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c4ac549f-f48c-4f8a-a4ca-0e3ab1975f4c"
       }
     }
   }
