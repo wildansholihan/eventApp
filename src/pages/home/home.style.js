@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffffff', // 🍃 cerah, segar, tidak terlalu putih
+    backgroundColor: '#ffffffff',
     paddingHorizontal: 16,
     paddingTop: 16,
   },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   searchInput: {
-    backgroundColor: '#E0F2FE', // 🔵 biru muda, fresh
+    backgroundColor: '#E0F2FE',
     borderRadius: 12,
     paddingVertical: 12,
     paddingLeft: 40,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   productCard: {
-    backgroundColor: '#DBF4FF', // 🩵 biru pastel
+    backgroundColor: '#DBF4FF',
     width: '48%',
     borderRadius: 12,
     padding: 10,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontWeight: 'bold',
-    color: '#10B981', // 🟢 hijau stabil, fresh
+    color: '#10B981',
     fontSize: 14,
   },
 });

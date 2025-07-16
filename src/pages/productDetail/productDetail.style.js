@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 
   scrollContainer: {
     padding: 16,
-    paddingBottom: 120, // untuk memberi ruang footer
+    paddingBottom: 120,
   },
 
   loader: {
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 
   backButton: {
     marginBottom: 16,
+    justifyContent: 'space-between',
   },
 
   backText: {
@@ -38,6 +39,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     borderRadius: 12,
     backgroundColor: '#E5E7EB',
+  },
+
+  heading: {
+      flex: 1,
+      textAlign: 'center',
+      fontSize: 20,
   },
 
   productTitle: {

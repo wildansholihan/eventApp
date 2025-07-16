@@ -67,10 +67,12 @@ const ProductDetail = () => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {/* Back Button */}
+
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Text style={styles.backText}>← Back</Text>
+          <FontAwesomeIcon icon={faArrowLeft} size={20} />
+          <Text style={styles.heading}>Product Detail</Text>
         </TouchableOpacity>
+
 
         <View style={styles.productImageWrapper}>
           <Image source={{ uri: product.image }} style={styles.productImage} />
@@ -81,7 +83,6 @@ const ProductDetail = () => {
         <Text style={styles.productDescription}>{product.description}</Text>
       </ScrollView>
 
-      {/* Footer Buttons */}
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.addToCartButton}
