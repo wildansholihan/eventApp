@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
       flex: 1,
       textAlign: 'center',
       fontSize: 20,
+      fontWeight: '700',
+      color: '#111827',
   },
 
   productTitle: {
