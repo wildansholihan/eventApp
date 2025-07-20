@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, TouchableOpacity, Text, Image, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import styles from '../home.style';
@@ -29,31 +29,44 @@ const ProductDetailContent = () => {
           placeholder="Search products..."
           value={searchTerm}
           onChangeText={setSearchTerm}
-          style={styles.searchInput}
+          style={[styles.searchInput]}
         />
-        <FontAwesomeIcon icon={faSearch} size={16} color="#4b5563ff" style={styles.searchIcon} />
-      </View>
 
-      <FlatList
-        data={filteredProducts}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-        columnWrapperStyle={styles.gridColumn}
-        contentContainerStyle={{ paddingBottom: 16 }}
-        showsVerticalScrollIndicator={true}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.productCard}
-            onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
-          >
-            <View style={styles.productImageWrapper}>
-              <Image source={{ uri: item.image }} style={styles.productImage} />
-            </View>
-            <Text style={styles.productTitle}>{item.title}</Text>
-            <Text style={styles.productPrice}>${item.price}</Text>
+        <FontAwesomeIcon icon={faSearch} size={16} style={styles.searchIcon} />        
+        
+        {searchTerm.length > 0 && (
+          <TouchableOpacity onPress={() => setSearchTerm('')} style={ styles.clearInput }>
+            <FontAwesomeIcon icon={faTimes} size={16} />
           </TouchableOpacity>
         )}
-      />
+      </View>
+
+      {filteredProducts.length === 0 ? (
+        <View style={ styles.noProductContainer }>
+          <Text style={ styles.noProductText }>Product not found</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={filteredProducts}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          columnWrapperStyle={styles.gridColumn}
+          contentContainerStyle={{ paddingBottom: 16 }}
+          showsVerticalScrollIndicator={true}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.productCard}
+              onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
+            >
+              <View style={styles.productImageWrapper}>
+                <Image source={{ uri: item.image }} style={styles.productImage} />
+              </View>
+              <Text style={styles.productTitle}>{item.title}</Text>
+              <Text style={styles.productPrice}>${item.price}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
     </View>
   );
 };

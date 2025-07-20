@@ -3,11 +3,17 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#F8FAFC',
     paddingHorizontal: 16,
     paddingTop: 16,
   },
-
+  navbar: {
+    backgroundColor: '#F8FAFC',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  
   scrollContainer: {
     padding: 16,
     paddingBottom: 120,
@@ -20,13 +26,12 @@ const styles = StyleSheet.create({
   },
 
   backButton: {
-    marginBottom: 32,
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
 
   backText: {
-    color: '#3B82F6',
+    color: '#2563EB',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -41,34 +46,34 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
     borderRadius: 12,
-    backgroundColor: '#E5E7EB',
+    backgroundColor: '#F8FAFC',
   },
 
   heading: {
-      flex: 1,
-      textAlign: 'center',
-      fontSize: 20,
-      fontWeight: '700',
-      color: '#111827',
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1E293B',
   },
 
   productTitle: {
     fontSize: 20,
     fontWeight: '700',
     marginBottom: 8,
-    color: '#111827',
+    color: '#1E293B',
   },
 
   productPrice: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#10B981',
+    color: '#84CC16',
     marginBottom: 12,
   },
 
   productDescription: {
     fontSize: 14,
-    color: '#374151',
+    color: '#475569',
     lineHeight: 20,
   },
 
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#E2E8F0',
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -98,7 +103,7 @@ const styles = StyleSheet.create({
 
   addToCartButton: {
     flex: 1,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#2563EB',
     paddingVertical: 12,
     marginRight: 8,
     borderRadius: 8,
@@ -107,7 +112,7 @@ const styles = StyleSheet.create({
 
   buyNowButton: {
     flex: 1,
-    backgroundColor: '#10B981',
+    backgroundColor: '#22C55E',
     paddingVertical: 12,
     marginLeft: 8,
     borderRadius: 8,
@@ -115,13 +120,13 @@ const styles = StyleSheet.create({
   },
 
   addToCartText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontWeight: 'bold',
     fontSize: 16,
   },
 
   buyNowText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
   },
 
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     padding: 24,
     borderRadius: 12,
     alignItems: 'center',
@@ -145,14 +150,14 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 16,
     fontWeight: '600',
-    color: '#10B981',
+    color: '#22C55E',
   },
 
-    modalTextAdd: {
+  modalTextAdd: {
     marginTop: 12,
     fontSize: 16,
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#2563EB',
   },
 });
 

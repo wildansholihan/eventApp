@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import styles from '../productDetail.style';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -8,10 +8,12 @@ const ProductDetailNavbar = function ProductDetailNavbar ({}) {
     // navbar
     const navigation = useNavigation();
   return (
+        <View style={styles.navbar}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <FontAwesomeIcon icon={faArrowLeft} size={20} />
-          <Text style={styles.heading}>Product Detail</Text>
         </TouchableOpacity>
+        <Text style={styles.heading}>Product Detail</Text>
+        </View>
   );
 }
 

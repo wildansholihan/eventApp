@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffffff',
+    backgroundColor: '#F1F5F9',
     paddingHorizontal: 16,
     paddingTop: 16,
   },
@@ -18,9 +18,34 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
+  cartBadge: {
+    position: 'absolute',
+    top: -5,
+    right: -10,
+    backgroundColor: '#2563EB',
+    height: 18,
+    minWidth: 18,
+    borderRadius: 9,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  cartBadgeOval: {
+    minWidth: 26,
+    borderRadius: 12,
+    paddingHorizontal: 6,
+  },
+
+  cartBadgeText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
   headerTitle: {
+    flex: 1,
     fontSize: 20,
-    fontWeight: '700'
+    fontWeight: '700',
+    textAlign: 'center',
   },
 
   searchWrapper: {
@@ -28,7 +53,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   searchInput: {
-    backgroundColor: '#E0F2FE',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     paddingVertical: 12,
     paddingLeft: 40,
@@ -43,14 +68,21 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  searchFilterIcon: {
+  clearInput: {
     position: 'absolute',
     right: 12,
-    top: 12,
+    top: 14,
     width: 24,
     height: 24,
-    backgroundColor: '#3B82F6',
-    borderRadius: 6,
+  },
+  noProductContainer: {
+    top: 20,
+    alignItems: 'center',
+  },
+  noProductText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#475569',
   },
 
   gridColumn: {
@@ -58,19 +90,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   productCard: {
-    backgroundColor: '#DBF4FF',
+    backgroundColor: '#FFFFFF',
     width: '48%',
     borderRadius: 12,
     padding: 10,
     marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 3,
   },
   productImageWrapper: {
-    backgroundColor: '#E0F2FE',
+    backgroundColor: '#ffffffff',
     borderRadius: 10,
     height: 150,
     justifyContent: 'center',
@@ -84,14 +116,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   productTitle: {
-    fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     fontSize: 14,
     marginBottom: 4,
   },
   productPrice: {
-    fontWeight: 'bold',
-    color: '#10B981',
+    color: '#84CC16',
     fontSize: 14,
   },
 });

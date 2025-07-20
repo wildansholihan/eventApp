@@ -4,6 +4,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faMinus, faPlus, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { useFocusEffect } from '@react-navigation/native';
 
 const CartContent = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,16 @@ const CartContent = () => {
   const toggleSelect = (id) => {
     dispatch({ type: 'TOGGLE_SELECTED_ID', payload: id });
   };
+
+    // Reset selectedIds saat keluar dari cart
+  useFocusEffect(
+    React.useCallback(() => {
+      
+      return () => {
+        dispatch({ type: 'CLEAR_SELECTED_IDS' });
+      };
+    }, [])
+  );
 
   const handleQtyChange = (id, delta) => {
     const item = cartItems.find(i => i.id === id);
@@ -83,7 +94,7 @@ const CartContent = () => {
   return (
     <View style={styles.contentContainer}>
       {selectedIds.length === 0 && cartItems.length > 0 && (
-        <Text style={styles.helperText}>Pilih produk terlebih dahulu</Text>
+        <Text style={styles.helperText}>Select a product first.</Text>
       )}
       {cartItems.length === 0 ? (
         <Text style={styles.emptyText}>Your cart is empty.</Text>
@@ -116,7 +127,7 @@ const CartContent = () => {
             <Text style={styles.modalTextDel}>Are you sure you want to delete the selected product?</Text>
             <View style={styles.modalButtons}>
               <TouchableOpacity onPress={handleDeleteSelected} style={styles.modalConfirmButton}>
-                <Text style={styles.modalButtonText}>Ya</Text>
+                <Text style={styles.modalButtonText}>Yes</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => dispatch({ type: 'SET_SHOW_DELETE_MODAL', payload: false })} style={styles.modalCancelButton}>
                 <Text style={styles.modalButtonText}>Cancel</Text>

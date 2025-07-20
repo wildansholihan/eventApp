@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import productDetailService from '../productDetail.service';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCheckCircle, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import styles from '../productDetail.style';
@@ -19,6 +19,9 @@ const ProductDetailContent = function ProductDetailContent() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showAddToCartModal, setShowAddToCartModal] = useState(false);
 
+  const cartItems = useSelector(state => state.cart.cartItems);
+  const selectedIds = useSelector(state => state.cart.selectedIds);
+
   useEffect(() => {
     productDetailService.getProductDetailById(productId)
       .then(data => setProduct(data))
@@ -26,11 +29,19 @@ const ProductDetailContent = function ProductDetailContent() {
       .finally(() => setLoading(false));
   }, [productId]);
 
+
   const handleBuyNow = () => {
-    setShowSuccessModal(true);
-    setTimeout(() => {
-      setShowSuccessModal(false);
-    }, 2000);
+    const existsInCart = cartItems.some(item => item.id === product.id);
+
+    if (!existsInCart) {
+      dispatch({ type: 'ADD_TO_CART', payload: product });
+    }
+
+    if (!selectedIds.includes(product.id)) {
+      dispatch({ type: 'TOGGLE_SELECTED_ID', payload: product.id });
+    }
+
+    navigation.navigate('Cart')
   };
 
   const handleAddToCart = () => {
