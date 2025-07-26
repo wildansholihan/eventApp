@@ -1,14 +1,5 @@
-const API_BASE = 'https://open-event-api.herokuapp.com';
-
-const getEvents = async () => {
-  const res = await fetch(`${API_BASE}/v1/events`);
-  const json = await res.json();
-  return json.data.map(item => ({
-    id: item.id,
-    title: item.attributes.name,
-    date: item.attributes.starts_at,
-    description: item.attributes.description,
-  }));
+let env = {
+    API_BASE : 'https://open-event-api.herokuapp.com'
 };
 
-export default getEvents
+export default env;

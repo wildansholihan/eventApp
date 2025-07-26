@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchEvents } from '../redux/eventSlice';
-import EventCard from '../../components/EventCard';
+import EventCard from '../../components/eventCard/eventCard';
+import { fetchEvents } from '../../components/eventCard/eventCard.actions';
 
 const Home = () => {
   const dispatch = useDispatch();

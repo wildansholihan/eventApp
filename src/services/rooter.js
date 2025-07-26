@@ -6,7 +6,7 @@ import Profile from '../pages/profile/profile'
 import Home from '../pages/home/home'
 // PAGES - END
 
-const Stack = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function Rooter() {
   return (
