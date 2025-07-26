@@ -1,22 +1,20 @@
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // PAGES - START
-import ProductDetail from '../pages/productDetail/productDetail';
-import Home from '../pages/home/home';
-import Cart from '../pages/cart/cart';
+import Profile from '../pages/profile/profile'
+import Home from '../pages/home/home'
 // PAGES - END
 
-const Stack = createStackNavigator();
+const Stack = createBottomTabNavigator();
 
 export default function Rooter() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="ProductDetail" component={ProductDetail} />
-        <Stack.Screen name="Cart" component={Cart} />
-      </Stack.Navigator>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Profile" component={Profile} />
+      </Tab.Navigator>
   </NavigationContainer>
   );
 }

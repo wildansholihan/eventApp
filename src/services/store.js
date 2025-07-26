@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import cartReducer from '../pages/cart/cart.reducer'; // import cart reducer
+import eventReducer from '../components/eventCard/eventCard.reducer'; // import eventCard reducer
 
 const rootReducer = combineReducers({
-  cart: cartReducer,
+  cart: eventReducer,
 });
 
 const store = createStore(rootReducer);
