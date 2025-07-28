@@ -1,34 +1,84 @@
-import React, { useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, ActivityIndicator, Text, StyleSheet } from 'react-native';
 import EventCard from '../../components/eventCard/eventCard';
-import { fetchEvents } from '../../components/eventCard/eventCard.actions';
+import getEvents from '../../components/eventCard/eventCard.service';
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const { events, status } = useSelector(state => state.events);
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchEvents());
-  }, [dispatch]);
+    getEvents()
+      .then(data => {
+        setEvents(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to fetch events:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" color="#007AFF" />
+        <Text style={styles.loadingText}>Loading events...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Upcoming Events</Text>
-      {status === 'loading' && <Text>Loading...</Text>}
-      {status === 'error' && <Text>Error loading events</Text>}
+      <View style={styles.headerContainer}>
+        <Text style={styles.header}>Discover Events</Text>
+      </View>
       <FlatList
         data={events}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <EventCard event={item} />}
+        contentContainerStyle={styles.listContent}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 12 }
+  container: {
+    flex: 1,
+    backgroundColor: '#F9F9F9',
+  },
+  headerContainer: {
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#222',
+  },
+  listContent: {
+    padding: 16,
+    paddingBottom: 32,
+  },
+  separator: {
+    height: 16,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F9F9F9',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    color: '#555',
+  }
 });
 
 export default Home;

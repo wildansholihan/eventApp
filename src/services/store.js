@@ -1,6 +1,4 @@
-// store.js
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, combineReducers, compose } from 'redux';
 import eventReducer from '../components/eventCard/eventCard.reducer';
 
 // Gabungkan reducer
@@ -12,10 +10,7 @@ const rootReducer = combineReducers({
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// Buat store dengan middleware thunk
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+// Buat store tanpa middleware thunk
+const store = createStore(rootReducer, composeEnhancers());
 
 export default store;
