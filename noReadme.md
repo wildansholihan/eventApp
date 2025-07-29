@@ -1,1 +1,1 @@
-just want to jump with confidences
+just want to jump with confidence
