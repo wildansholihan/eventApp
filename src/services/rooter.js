@@ -1,20 +1,34 @@
+import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// PAGES - START
-import Profile from '../pages/profile/profile'
-import Home from '../pages/home/home'
-// PAGES - END
+import BottomTabsScreen from './rooterBottomTab';
 
-const Tab = createBottomTabNavigator();
+import EventDetail from '../pages/eventDetail/eventDetail';
 
-export default function Rooter() {
+// MAIN STACK
+const MainStack = createNativeStackNavigator();
+const MainStackScreen = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Profile" component={Profile} />
-      </Tab.Navigator>
-  </NavigationContainer>
+    <MainStack.Navigator
+      initialRouteName="Main"
+      screenOptions={{ headerShown: false }}
+    >
+      <MainStack.Screen name="Main" component={BottomTabsScreen} />
+      <MainStack.Screen name="EventDetail" component={EventDetail} />
+    </MainStack.Navigator>
   );
+};
+
+// ROOTER
+class Rooter extends Component {
+  render() {
+    return (
+        <NavigationContainer>
+          <MainStackScreen />
+        </NavigationContainer>
+    );
+  }
 }
+
+export default Rooter;

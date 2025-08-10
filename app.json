@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ShopApp",
-    "slug": "shop-app",
+    "name": "EventApp",
+    "slug": "event-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,7 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.wildansho.shopapp"
+      "package": "com.wildansho.eventapp"
     },
     "web": {
       "favicon": "./assets/favicon.png",

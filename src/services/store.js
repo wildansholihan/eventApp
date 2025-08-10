@@ -1,9 +1,11 @@
 import { createStore, combineReducers, compose } from 'redux';
 import eventReducer from '../components/eventCard/eventCard.reducer';
+import favoriteReducer from '../pages/favorite/favorite.reducer';
 
 // Gabungkan reducer
 const rootReducer = combineReducers({
   events: eventReducer,
+  favorites: favoriteReducer,
 });
 
 // Gunakan Redux DevTools jika tersedia

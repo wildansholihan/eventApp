@@ -1,47 +1,72 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Share,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+import styles from './eventCard.style'; // pastikan file ini dibuat
 
-const EventCard = ({ event }) => (
-  <TouchableOpacity style={styles.card}>
-    {event.image && (
-      <Image source={{ uri: event.image }} style={styles.image} />
-    )}
-    <View style={styles.content}>
-      <Text style={styles.title}>{event.title}</Text>
-      <Text style={styles.date}>{new Date(event.date).toLocaleDateString()}</Text>
+const EventCard = ({ event, isFavorite }) => {
+  const dispatch = useDispatch();
+
+  const handleShare = async () => {
+    try {
+      await Share.share({
+        message: `${event.title}\n\n${event.url || 'No link available'}`,
+      });
+    } catch (error) {
+      console.error('Share error:', error.message);
+    }
+  };
+
+  const handleFavoritePress = () => {
+    dispatch({ type: 'TOGGLE_FAVORITE', payload: event });
+  };
+
+  return (
+    <View style={styles.card}>
+      <Image
+        source={{
+          uri: event.image || 'https://via.placeholder.com/400x300?text=No+Image',
+        }}
+        style={styles.image}
+        resizeMode="cover"
+      />
+      <View style={styles.details}>
+        <View style={styles.headerRow}>
+          <Text style={styles.title} numberOfLines={2}>
+            {event.title || 'No Title'}
+          </Text>
+          <View style={styles.iconRow}>
+            <TouchableOpacity onPress={handleFavoritePress} style={styles.icon}>
+              <Ionicons
+                name={isFavorite ? 'heart' : 'heart-outline'}
+                size={20}
+                color={isFavorite ? '#E91E63' : '#999'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleShare}>
+              <Ionicons name="share-social-outline" size={20} color="#666" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <Text style={styles.meta}>
+          {event.date} • {event.time}
+        </Text>
+
+        <Text style={styles.meta}>
+          {event.location}{event.city ? `, ${event.city}` : ''}{event.country ? `, ${event.country}` : ''}
+        </Text>
+        
+      </View>
     </View>
-  </TouchableOpacity>
-);
+  );
+};
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#fff',
-    marginBottom: 12,
-    borderRadius: 12,
-    overflow: 'hidden',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-  },
-  image: {
-    width: '100%',
-    height: 160,
-  },
-  content: {
-    padding: 12,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 4,
-  },
-  date: {
-    fontSize: 14,
-    color: '#888',
-  },
-});
 
 export default EventCard;

@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-const Profile = () => (
-  <View style={styles.container}>
-    <Image
-      source={{ uri: 'https://i.pravatar.cc/150?img=3' }}
-      style={styles.avatar}
-    />
-    <Text style={styles.name}>Wildan Sho</Text>
-    <Text style={styles.email}>wildan@example.com</Text>
+class Profile extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Image
+          source={{ uri: 'https://i.pravatar.cc/150?img=3' }}
+          style={styles.avatar}
+        />
+        <Text style={styles.name}>Wildan Sho</Text>
+        <Text style={styles.email}>wildan@example.com</Text>
 
-    <View style={styles.infoBox}>
-      <Text style={styles.infoTitle}>Member Since</Text>
-      <Text style={styles.infoValue}>January 2024</Text>
-    </View>
-  </View>
-);
+        <View style={styles.infoBox}>
+          <Text style={styles.infoTitle}>Member Since</Text>
+          <Text style={styles.infoValue}>January 2024</Text>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -64,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile
+export default Profile;

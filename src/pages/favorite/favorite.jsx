@@ -6,91 +6,68 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 import { Ionicons } from '@expo/vector-icons';
 
 import EventCard from '../../components/eventCard/eventCard';
-import homeService from './home.service';
-import FavoriteToast from '../../components/favoriteToast/favoriteToast';
 
-class Home extends Component {
+class Favorite extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchQuery: '',
-      events: [],
-      filteredEvents: [],
-      loading: true,
-      showToast: false,
+      filteredFavorites: props.favorites,
     };
 
     this.debouncedSearch = debounce(this.handleSearch.bind(this), 200);
   }
 
-  async componentDidMount() {
-    try {
-      const events = await homeService.getEvents();
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.favorites !== this.props.favorites) {
       this.setState({
-        events,
-        filteredEvents: events,
-        loading: false,
+        filteredFavorites: this.filterFavorites(this.state.searchQuery),
       });
-    } catch (error) {
-      console.error('Error fetching events:', error);
-      this.setState({ loading: false });
     }
   }
 
-  handleSearch(query) {
+  filterFavorites(query) {
+    const { favorites } = this.props;
+    if (!query) return favorites;
+
     const lowerQuery = query.toLowerCase();
-    const filtered = this.state.events.filter((item) =>
-      item.title?.toLowerCase().includes(lowerQuery)
+    return favorites.filter((item) =>
+      item.name?.toLowerCase().includes(lowerQuery)
     );
-    this.setState({ searchQuery: query, filteredEvents: filtered });
+  }
+
+  handleSearch(query) {
+    const filtered = this.filterFavorites(query);
+    this.setState({ searchQuery: query, filteredFavorites: filtered });
   }
 
   clearSearch = () => {
     this.setState({
       searchQuery: '',
-      filteredEvents: this.state.events,
+      filteredFavorites: this.props.favorites,
     });
   };
 
-  handleAddFavorite = (event) => {
-    this.props.dispatch({ type: 'TOGGLE_FAVORITE', payload: event });
-    this.setState({ showToast: true });
-
-    setTimeout(() => this.setState({ showToast: false }), 3000);
-  };
-
-  goToFavorites = () => {
-    this.setState({ showToast: false }, () => {
-      this.props.navigation.navigate('Favorite');
-    });
+  handleToggleFavorite = (event) => {
+    this.props.toggleFavorite(event);
   };
 
   render() {
-    const { filteredEvents, searchQuery, loading, showToast } = this.state;
-
-    if (loading) {
-      return (
-        <View style={styles.centered}>
-          <ActivityIndicator size="large" color="#333" />
-        </View>
-      );
-    }
+    const { filteredFavorites, searchQuery } = this.state;
 
     return (
       <View style={styles.container}>
-        {/* Header */}
         <View style={styles.headerContainer}>
-          <Text style={styles.headerLabel}>Explore Events</Text>
+          <Text style={styles.headerLabel}>Your Favorites</Text>
           <View style={styles.searchContainer}>
             <TextInput
-              placeholder="Search events..."
+              placeholder="Search favorites..."
               style={styles.searchInput}
               value={searchQuery}
               onChangeText={(text) => {
@@ -107,35 +84,23 @@ class Home extends Component {
           </View>
         </View>
 
-        {/* List */}
-        {filteredEvents.length === 0 ? (
+        {filteredFavorites.length === 0 ? (
           <View style={styles.centered}>
-            <Text>No events found.</Text>
+            <Text style={styles.emptyText}>You have no favorite events yet.</Text>
           </View>
         ) : (
-        <FlatList
-          data={filteredEvents}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('EventDetail', { eventId: item.id })}
-            >
-            <EventCard
-              event={item}
-              onFavorite={() => this.handleAddFavorite(item)}
-            />
-            </TouchableOpacity>
+          <FlatList
+            data={filteredFavorites}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <EventCard
+                event={item}
+                isFavorite={true}
+                onFavoritePress={() => this.handleToggleFavorite(item)}
+              />
             )}
             contentContainerStyle={styles.listContent}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
-          />
-        )}
-
-        {/* Toast */}
-        {showToast && (
-          <FavoriteToast
-            message="Added to favorites"
-            onViewAll={this.goToFavorites}
           />
         )}
       </View>
@@ -178,6 +143,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F9F9F9',
   },
+  emptyText: {
+    fontSize: 16,
+    color: '#888',
+    marginTop: 20,
+    textAlign: 'center',
+    paddingHorizontal: 30,
+  },
 });
 
-export default connect()(Home);
+const mapStateToProps = (state) => ({
+  favorites: state.favorites.favorites || [],
+});
+
+export default connect(
+  mapStateToProps,
+  (dispatch) => ({
+    toggleFavorite: (item) => dispatch({ type: 'TOGGLE_FAVORITE', payload: item }),
+  })
+)(Favorite);

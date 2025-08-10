@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~5.0.4",
+    "@expo/vector-icons": "^14.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
@@ -20,26 +21,28 @@
     "@react-navigation/native-stack": "^7.3.21",
     "@react-navigation/stack": "^7.4.2",
     "@reduxjs/toolkit": "^2.8.2",
-    "@ui-kitten/eva-icons": "^5.3.1",
     "axios": "^1.10.0",
-    "expo": "~53.0.12",
+    "expo": "53.0.20",
+    "expo-clipboard": "^7.1.5",
     "expo-secure-store": "^14.2.3",
     "expo-status-bar": "~2.2.3",
     "install": "^0.13.0",
+    "lodash": "^4.17.21",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-native": "0.79.4",
+    "react-native": "0.79.5",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "~4.11.1",
-    "react-native-svg": "^15.12.0",
+    "react-native-svg": "15.11.2",
     "react-native-web": "^0.20.0",
     "react-redux": "^9.2.0",
     "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "babel-plugin-module-resolver": "^5.0.2"
   },
   "private": true
 }
