@@ -1,4 +1,11 @@
-Task:
+Task List:
 
-feature(Profile): implement multilanguage min. 3 language
-feature(home, favorite): implement style to vertical scrollbar.
+feature (Profile): Implement multilanguage support with at least 3 languages.
+
+feature (Home, Favorite): Apply vertical scrollbar styling for better UI consistency.
+
+refactor (Event Detail): Update background colors to avoid flat appearance (currently only using gray & white, not consistent).
+
+refactor (Home, Favorite): Add illustration when search results are empty.
+
+fix (Home, Favorite, Profile): Add padding to the tab bar so that the text below icons is not partially hidden.
