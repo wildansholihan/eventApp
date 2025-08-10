@@ -68,59 +68,57 @@ class EventDetail extends Component {
     }
 
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => this.props.navigation.goBack()}
-        >
-          <Ionicons name="arrow-back" size={24} color="#fff" />
-          <Text style={styles.backText}>Kembali</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.favoriteIcon}
-          onPress={() => this.props.dispatch({ type: 'ADD_FAVORITE', payload: event })}
-        >
-        <Ionicons
-          name={this.props.favorites?.some(fav => fav.id === event.id) ? 'heart' : 'heart-outline'}
-          size={24}
-          color="#fff"
-        />
-
-        </TouchableOpacity>
-      </View>
-
-        <Image
-          source={{ uri: event.image }}
-          style={styles.image}
-          resizeMode="cover"
-        />
-        <View style={styles.content}>
-          <Text style={styles.title}>{event.title}</Text>
-          <Text style={styles.meta}>{event.date} • {event.time}</Text>
-          <Text style={styles.meta}>{event.location}{event.city ? `, ${event.city}` : ''}</Text>
-
-          <Text style={styles.description}>{event.description}</Text>
-
-          <TouchableOpacity onPress={this.handleAddFavorite} style={styles.favoriteButton}>
-            <Ionicons name="heart-outline" size={20} color="#E91E63" />
-            <Text style={styles.favoriteText}>Tambahkan ke Favorit</Text>
-          </TouchableOpacity>
-
-          {event.eventUrl && (
-            <TouchableOpacity onPress={this.handleOpenLink} style={styles.visitButton}>
-              <Text style={styles.visitText}>🎫 Cek Harga Ticket</Text>
+      <View style={styles.wrapperContainer}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <View style={styles.header}>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => this.props.navigation.goBack()}
+            >
+              <Ionicons name="arrow-back" size={24} color="#fff" />
+              <Text style={styles.backText}>Kembali</Text>
             </TouchableOpacity>
-          )}
-        </View>
-      </ScrollView>
+
+            <TouchableOpacity
+              style={styles.favoriteIcon}
+              onPress={() => this.props.dispatch({ type: 'ADD_FAVORITE', payload: event })}
+            >
+            <Ionicons
+              name={this.props.favorites?.some(fav => fav.id === event.id) ? 'heart' : 'heart-outline'}
+              size={24}
+              color="#fff"
+            />
+
+            </TouchableOpacity>
+          </View>
+
+            <Image
+              source={{ uri: event.image }}
+              style={styles.image}
+              resizeMode="cover"
+            />
+            <View style={styles.content}>
+              <Text style={styles.title}>{event.title}</Text>
+              <Text style={styles.meta}>{event.date} • {event.time}</Text>
+              <Text style={styles.meta}>{event.location}{event.city ? `, ${event.city}` : ''}</Text>
+              <Text style={styles.description}>{event.description}</Text>
+          </View>
+        </ScrollView>
+        
+        {event.eventUrl && (
+          <TouchableOpacity onPress={this.handleOpenLink} style={styles.visitButton}>
+            <Text style={styles.visitText}>🎫 Cek Harga Ticket</Text>
+          </TouchableOpacity>
+        )}
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  wrapperContainer: {
+    flex: 1,
+  },
   container: { backgroundColor: '#fff', paddingBottom: 32 },
   centered: {
     flex: 1,
@@ -202,11 +200,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   visitButton: {
-    marginTop: 16,
-    paddingVertical: 10,
+    bottom: 24,
+    marginHorizontal: 24,
+    padding: 12,
     backgroundColor: '#3F51B5',
     borderRadius: 6,
     alignItems: 'center',
+
   },
   visitText: {
     color: '#fff',

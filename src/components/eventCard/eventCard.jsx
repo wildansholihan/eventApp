@@ -7,11 +7,17 @@ import {
   Share,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './eventCard.style'; // pastikan file ini dibuat
 
-const EventCard = ({ event, isFavorite }) => {
+const EventCard = ({ event }) => {
   const dispatch = useDispatch();
+  
+  // 🔹 Ambil daftar favorites langsung dari Redux
+  const favorites = useSelector(state => state.favorites.favorites);
+  
+  // 🔹 Cek apakah event ini sudah ada di favorites
+  const isFavorite = favorites?.some(fav => fav.id === event.id);
 
   const handleShare = async () => {
     try {
@@ -60,13 +66,13 @@ const EventCard = ({ event, isFavorite }) => {
         </Text>
 
         <Text style={styles.meta}>
-          {event.location}{event.city ? `, ${event.city}` : ''}{event.country ? `, ${event.country}` : ''}
+          {event.location}
+          {event.city ? `, ${event.city}` : ''}
+          {event.country ? `, ${event.country}` : ''}
         </Text>
-        
       </View>
     </View>
   );
 };
-
 
 export default EventCard;
