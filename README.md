@@ -1,5 +1,4 @@
-````markdown
-# 📅 EventApp
+## 📅 EventApp
 
 **EventApp** adalah aplikasi mobile buat ngeliat daftar event, baca detailnya, dan nyimpen event favorit biar nggak kelupaan.  
 Dibangun pakai **React Native + Expo**, gampang dijalankan di HP atau emulator.  
@@ -23,7 +22,6 @@ Proyek ini open source — silakan ambil, oprek, belajar, atau kembangkan sesuka
    ```bash
    git clone https://github.com/username/eventApp.git
    cd eventApp
-````
 
 2. **Install dependencies**
 
@@ -54,6 +52,3 @@ Santai aja, semua PR bakal direview. 👍
 Boleh banget dipakai, dimodif, dan dibagikan.
 Kalau mau nyantumin link repo ini atau nama aku, terima kasih banyak! 🙌
 Kalau nggak juga nggak masalah — tapi kredit itu membantu orang lain nemuin repo ini di GitHub.
-
-```
-```
