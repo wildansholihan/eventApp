@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import debounce from 'lodash/debounce';
+import _ from 'lodash/debounce';
 import { Ionicons } from '@expo/vector-icons';
 
 import EventCard from '../../components/eventCard/eventCard';
@@ -21,7 +21,7 @@ class Favorite extends Component {
       filteredFavorites: props.favorites,
     };
 
-    this.debouncedSearch = debounce(this.handleSearch.bind(this), 200);
+    this.debouncedSearch = _(this.handleSearch.bind(this), 200);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -93,11 +93,15 @@ class Favorite extends Component {
             data={filteredFavorites}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
-              <EventCard
-                event={item}
-                isFavorite={true}
-                onFavoritePress={() => this.handleToggleFavorite(item)}
-              />
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('EventDetail', { eventId: item.id })}
+              >
+                <EventCard
+                  event={item}
+                  isFavorite={true}
+                  onFavoritePress={() => this.handleToggleFavorite(item)}
+                />
+              </TouchableOpacity>
             )}
             contentContainerStyle={styles.listContent}
             ItemSeparatorComponent={() => <View style={styles.separator} />}

@@ -1,3 +1,4 @@
 Task:
 
 feature(Profile): implement multilanguage min. 3 language
+feature(home, favorite): implement style to vertical scrollbar.

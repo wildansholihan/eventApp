@@ -20,6 +20,7 @@ class EventDetail extends Component {
       event: null,
       loading: true,
     };
+    this.handleFavoritePress =  this.handleFavoritePress.bind(this);
   }
 
   async componentDidMount() {
@@ -34,11 +35,6 @@ class EventDetail extends Component {
     }
   }
 
-  handleAddFavorite = () => {
-    const { event } = this.state;
-    this.props.dispatch({ type: 'ADD_FAVORITE', payload: event });
-  };
-
   handleOpenLink = () => {
     const { event } = this.state;
     if (event?.eventUrl) {
@@ -46,6 +42,11 @@ class EventDetail extends Component {
         console.error('Gagal membuka URL:', err)
       );
     }
+  };
+
+  handleFavoritePress = () => {
+  const { event } = this.state;
+  this.props.dispatch({ type: 'TOGGLE_FAVORITE', payload: event });
   };
 
   render() {
@@ -81,7 +82,8 @@ class EventDetail extends Component {
 
             <TouchableOpacity
               style={styles.favoriteIcon}
-              onPress={() => this.props.dispatch({ type: 'ADD_FAVORITE', payload: event })}
+              onPress={this.handleFavoritePress}
+              
             >
             <Ionicons
               name={this.props.favorites?.some(fav => fav.id === event.id) ? 'heart' : 'heart-outline'}
